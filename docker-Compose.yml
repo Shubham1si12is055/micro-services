@@ -1,5 +1,20 @@
 version: "2.1"
 services:
+
+  discovery:
+    image: dockerdungeon/eureka-service1.0:latest
+    ports:
+    - 8001:8001
+
+  gateway:
+    image: dockerdungeon/zuul-service1.0:latest
+    ports:
+    - 8090:8090
+    depends_on:
+    - discovery
+    links:
+    - discovery:discovery
+
   mongo:
     image: mongo:3.2.4
     ports:
@@ -10,15 +25,10 @@ services:
     image: dockerdungeon/microservices1.0:latest
     ports:
     - 8010:8010
+    depends_on:
+      - discovery
     links:
-    - mongo
+      - discovery:discovery
+      - mongo
 
-  zuul-server:
-    image: dockerdungeon/zuul-service1.0:latest
-    ports:
-    - 8090:8090
 
-  eureka-server:
-    image: dockerdungeon/eureka-service1.0:latest
-    ports:
-    - 8001:8001
