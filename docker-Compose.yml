@@ -14,11 +14,11 @@ services:
     - mongo
 
   zuul-server:
-    image: dockerdungeon/zuulservice1.0:latest
+    image: dockerdungeon/zuul-service1.0:latest
     ports:
     - 8090:8090
 
   eureka-server:
-    image: dockerdungeon/eurekaservice1.0:latest
+    image: dockerdungeon/eureka-service1.0:latest
     ports:
     - 8001:8001
