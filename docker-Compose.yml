@@ -10,10 +10,10 @@ services:
     image: dockerdungeon/zuul-service1.0:latest
     ports:
     - 8090:8090
-    depends_on:
-    - discovery
+  #  depends_on:
+  #  - discovery
     links:
-    - discovery:discovery
+    - discovery
 
   mongo:
     image: mongo:3.2.4
@@ -25,10 +25,10 @@ services:
     image: dockerdungeon/microservices1.0:latest
     ports:
     - 8010:8010
-    depends_on:
-      - discovery
+  #  depends_on:
+  #    - discovery
     links:
-      - discovery:discovery
+      - discovery
       - mongo
 
 
